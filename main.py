@@ -169,11 +169,6 @@ class ANEELMonitorApp:
             self.browser.wait_for_human_captcha()
             self.log("Pesquisa concluída. Continuando...")
 
-            # Wait for results
-            self.log("Aguardando resultados...")
-            if not self.browser.wait_for_results(timeout=30):
-                self.log("Timeout esperando resultados.")
-                return
 
             # Scrape process links
             self.log("Coletando links de processos...")

@@ -467,3 +467,297 @@ playwright._impl._errors.Error: Page.goto: net::ERR_NAME_NOT_RESOLVED at https:/
 Call log:
   - navigating to "https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquisar&acao_origem_externa=protocolo_pesquisar&id_orgao_acesso_externo=0", waiting until "networkidle"
 
+2026-10-23 10:59:28 | ERROR    | __main__:_monitoring_worker:224 - Erro no worker
+Traceback (most recent call last):
+
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1044, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x0000029755C00D50>
+    └ <Thread(Thread-1 (_monitoring_worker), started daemon 30444)>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1082, in _bootstrap_inner
+    self._context.run(self.run)
+    │    │        │   │    └ <function Thread.run at 0x0000029755C009E0>
+    │    │        │   └ <Thread(Thread-1 (_monitoring_worker), started daemon 30444)>
+    │    │        └ <method 'run' of '_contextvars.Context' objects>
+    │    └ <_contextvars.Context object at 0x00000297593360C0>
+    └ <Thread(Thread-1 (_monitoring_worker), started daemon 30444)>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1024, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(Thread-1 (_monitoring_worker), started daemon 30444)>
+    │    │        │    └ (datetime.datetime(2026, 10, 23, 0, 0), datetime.datetime(2026, 10, 23, 0, 0))
+    │    │        └ <Thread(Thread-1 (_monitoring_worker), started daemon 30444)>
+    │    └ <bound method ANEELMonitorApp._monitoring_worker of <__main__.ANEELMonitorApp object at 0x00000297596D1BE0>>
+    └ <Thread(Thread-1 (_monitoring_worker), started daemon 30444)>
+
+> File "c:\aneel_monitor\main.py", line 158, in _monitoring_worker
+    self.browser.navigate_to(sei_url)
+    │    │       │           └ 'https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquisar&acao_origem_ex...
+    │    │       └ <function ANEELBrowser.navigate_to at 0x00000297570F5D20>
+    │    └ <app.browser.browser.ANEELBrowser object at 0x0000029759998EC0>
+    └ <__main__.ANEELMonitorApp object at 0x00000297596D1BE0>
+
+  File "c:\aneel_monitor\app\browser\browser.py", line 52, in navigate_to
+    self.page.goto(url, wait_until="networkidle")
+    │    │    │    └ 'https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquisar&acao_origem_ex...
+    │    │    └ <function Page.goto at 0x00000297570ADF30>
+    │    └ <Page url='about:blank'>
+    └ <app.browser.browser.ANEELBrowser object at 0x0000029759998EC0>
+
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\sync_api\_generated.py", line 9903, in goto
+    self._sync(
+    │    └ <function SyncBase._sync at 0x0000029756865FE0>
+    └ <Page url='about:blank'>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+           │    └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished name='Task-7' coro=<Page.goto() done, defined at C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\...
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_page.py", line 562, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+                 │    │           │      └ <function locals_to_params at 0x000002975668D7A0>
+                 │    │           └ <function Frame.goto at 0x00000297567C2560>
+                 │    └ <Frame name= url='about:blank'>
+                 └ <Page url='about:blank'>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_frame.py", line 157, in goto
+    await self._channel.send(
+          │    │        └ <function Channel.send at 0x000002975669D0C0>
+          │    └ <playwright._impl._connection.Channel object at 0x00000297599BD3D0>
+          └ <Frame name= url='about:blank'>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+                 │    │           └ <function Connection.wrap_api_call at 0x000002975669FB60>
+                 │    └ <playwright._impl._connection.Connection object at 0x0000029759999A90>
+                 └ <playwright._impl._connection.Channel object at 0x00000297599BD3D0>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+          │                       └ {'frames': [{'file': 'c:\\aneel_monitor\\app\\browser\\browser.py', 'line': 52, 'column': 0, 'function': 'ANEELBrowser.naviga...
+          └ <function rewrite_error at 0x000002975613D4E0>
+
+playwright._impl._errors.Error: Page.goto: net::ERR_NAME_NOT_RESOLVED at https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquisar&acao_origem_externa=protocolo_pesquisar&id_orgao_acesso_externo=0
+Call log:
+  - navigating to "https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquisar&acao_origem_externa=protocolo_pesquisar&id_orgao_acesso_externo=0", waiting until "networkidle"
+
+2026-10-23 11:00:15 | ERROR    | __main__:_monitoring_worker:224 - Erro no worker
+Traceback (most recent call last):
+
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1044, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x0000029755C00D50>
+    └ <Thread(Thread-2 (_monitoring_worker), started daemon 14264)>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1082, in _bootstrap_inner
+    self._context.run(self.run)
+    │    │        │   │    └ <function Thread.run at 0x0000029755C009E0>
+    │    │        │   └ <Thread(Thread-2 (_monitoring_worker), started daemon 14264)>
+    │    │        └ <method 'run' of '_contextvars.Context' objects>
+    │    └ <_contextvars.Context object at 0x00000297599AE780>
+    └ <Thread(Thread-2 (_monitoring_worker), started daemon 14264)>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1024, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(Thread-2 (_monitoring_worker), started daemon 14264)>
+    │    │        │    └ (datetime.datetime(2026, 5, 1, 0, 0), datetime.datetime(2026, 5, 30, 0, 0))
+    │    │        └ <Thread(Thread-2 (_monitoring_worker), started daemon 14264)>
+    │    └ <bound method ANEELMonitorApp._monitoring_worker of <__main__.ANEELMonitorApp object at 0x00000297596D1BE0>>
+    └ <Thread(Thread-2 (_monitoring_worker), started daemon 14264)>
+
+> File "c:\aneel_monitor\main.py", line 158, in _monitoring_worker
+    self.browser.navigate_to(sei_url)
+    │    │       │           └ 'https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquisar&acao_origem_ex...
+    │    │       └ <function ANEELBrowser.navigate_to at 0x00000297570F5D20>
+    │    └ <app.browser.browser.ANEELBrowser object at 0x0000029759922850>
+    └ <__main__.ANEELMonitorApp object at 0x00000297596D1BE0>
+
+  File "c:\aneel_monitor\app\browser\browser.py", line 52, in navigate_to
+    self.page.goto(url, wait_until="networkidle")
+    │    │    │    └ 'https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquisar&acao_origem_ex...
+    │    │    └ <function Page.goto at 0x00000297570ADF30>
+    │    └ <Page url='about:blank'>
+    └ <app.browser.browser.ANEELBrowser object at 0x0000029759922850>
+
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\sync_api\_generated.py", line 9903, in goto
+    self._sync(
+    │    └ <function SyncBase._sync at 0x0000029756865FE0>
+    └ <Page url='about:blank'>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+           │    └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished name='Task-22' coro=<Page.goto() done, defined at C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib...
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_page.py", line 562, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+                 │    │           │      └ <function locals_to_params at 0x000002975668D7A0>
+                 │    │           └ <function Frame.goto at 0x00000297567C2560>
+                 │    └ <Frame name= url='about:blank'>
+                 └ <Page url='about:blank'>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_frame.py", line 157, in goto
+    await self._channel.send(
+          │    │        └ <function Channel.send at 0x000002975669D0C0>
+          │    └ <playwright._impl._connection.Channel object at 0x000002975B129BD0>
+          └ <Frame name= url='about:blank'>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+                 │    │           └ <function Connection.wrap_api_call at 0x000002975669FB60>
+                 │    └ <playwright._impl._connection.Connection object at 0x0000029759922E90>
+                 └ <playwright._impl._connection.Channel object at 0x000002975B129BD0>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+          │                       └ {'frames': [{'file': 'c:\\aneel_monitor\\app\\browser\\browser.py', 'line': 52, 'column': 0, 'function': 'ANEELBrowser.naviga...
+          └ <function rewrite_error at 0x000002975613D4E0>
+
+playwright._impl._errors.Error: Page.goto: net::ERR_NAME_NOT_RESOLVED at https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquisar&acao_origem_externa=protocolo_pesquisar&id_orgao_acesso_externo=0
+Call log:
+  - navigating to "https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquisar&acao_origem_externa=protocolo_pesquisar&id_orgao_acesso_externo=0", waiting until "networkidle"
+
+2026-11-06 09:18:09 | ERROR    | __main__:_monitoring_worker:224 - Erro no worker
+Traceback (most recent call last):
+
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1044, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000001E08D5E4D50>
+    └ <Thread(Thread-1 (_monitoring_worker), started daemon 28316)>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1082, in _bootstrap_inner
+    self._context.run(self.run)
+    │    │        │   │    └ <function Thread.run at 0x000001E08D5E49E0>
+    │    │        │   └ <Thread(Thread-1 (_monitoring_worker), started daemon 28316)>
+    │    │        └ <method 'run' of '_contextvars.Context' objects>
+    │    └ <_contextvars.Context object at 0x000001E08FAF7B40>
+    └ <Thread(Thread-1 (_monitoring_worker), started daemon 28316)>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1024, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(Thread-1 (_monitoring_worker), started daemon 28316)>
+    │    │        │    └ (datetime.datetime(2026, 5, 1, 0, 0), datetime.datetime(2026, 5, 30, 0, 0))
+    │    │        └ <Thread(Thread-1 (_monitoring_worker), started daemon 28316)>
+    │    └ <bound method ANEELMonitorApp._monitoring_worker of <__main__.ANEELMonitorApp object at 0x000001E091021BE0>>
+    └ <Thread(Thread-1 (_monitoring_worker), started daemon 28316)>
+
+> File "c:\aneel_monitor\main.py", line 162, in _monitoring_worker
+    self.browser.fill_date_fields(
+    │    │       └ <function ANEELBrowser.fill_date_fields at 0x000001E08EAD5DD0>
+    │    └ <app.browser.browser.ANEELBrowser object at 0x000001E0912D8EC0>
+    └ <__main__.ANEELMonitorApp object at 0x000001E091021BE0>
+
+  File "c:\aneel_monitor\app\browser\browser.py", line 63, in fill_date_fields
+    self.page.fill("#txtDataInicial", data_inicial)
+    │    │    │                       └ '01/05/2026'
+    │    │    └ <function Page.fill at 0x000001E08EA92090>
+    │    └ <Page url='https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquisar&acao...
+    └ <app.browser.browser.ANEELBrowser object at 0x000001E0912D8EC0>
+
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\sync_api\_generated.py", line 11332, in fill
+    self._sync(
+    │    └ <function SyncBase._sync at 0x000001E08EA45FE0>
+    └ <Page url='https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquisar&acao...
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+           │    └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished name='Task-8' coro=<Page.fill() done, defined at C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\...
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_page.py", line 930, in fill
+    return await self._main_frame.fill(**locals_to_params(locals()))
+                 │    │           │      └ <function locals_to_params at 0x000001E08E0717A0>
+                 │    │           └ <function Frame.fill at 0x000001E08E9C1BC0>
+                 │    └ <Frame name= url='https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquis...
+                 └ <Page url='https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquisar&acao...
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_frame.py", line 637, in fill
+    await self._fill(**locals_to_params(locals()))
+          │    │       └ <function locals_to_params at 0x000001E08E0717A0>
+          │    └ <function Frame._fill at 0x000001E08E9C1D20>
+          └ <Frame name= url='https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquis...
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_frame.py", line 649, in _fill
+    await self._channel.send("fill", self._timeout, locals_to_params(locals()))
+          │    │        │            │    │         └ <function locals_to_params at 0x000001E08E0717A0>
+          │    │        │            │    └ <function Frame._timeout at 0x000001E08E9A31C0>
+          │    │        │            └ <Frame name= url='https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquis...
+          │    │        └ <function Channel.send at 0x000001E08E07D0C0>
+          │    └ <playwright._impl._connection.Channel object at 0x000001E0913053D0>
+          └ <Frame name= url='https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquis...
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+                 │    │           └ <function Connection.wrap_api_call at 0x000001E08E07FB60>
+                 │    └ <playwright._impl._connection.Connection object at 0x000001E0912D9A90>
+                 └ <playwright._impl._connection.Channel object at 0x000001E0913053D0>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+          │                       └ {'frames': [{'file': 'c:\\aneel_monitor\\app\\browser\\browser.py', 'line': 63, 'column': 0, 'function': 'ANEELBrowser.fill_d...
+          └ <function rewrite_error at 0x000001E08DB1D4E0>
+
+playwright._impl._errors.TimeoutError: Page.fill: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#txtDataInicial")
+
+2026-11-06 10:19:09 | ERROR    | __main__:_monitoring_worker:219 - Erro no worker
+Traceback (most recent call last):
+
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1044, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x0000014684654CA0>
+    └ <Thread(Thread-1 (_monitoring_worker), started daemon 3896)>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1082, in _bootstrap_inner
+    self._context.run(self.run)
+    │    │        │   │    └ <function Thread.run at 0x0000014684654930>
+    │    │        │   └ <Thread(Thread-1 (_monitoring_worker), started daemon 3896)>
+    │    │        └ <method 'run' of '_contextvars.Context' objects>
+    │    └ <_contextvars.Context object at 0x0000014688257380>
+    └ <Thread(Thread-1 (_monitoring_worker), started daemon 3896)>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1024, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(Thread-1 (_monitoring_worker), started daemon 3896)>
+    │    │        │    └ (datetime.datetime(2026, 11, 6, 0, 0), datetime.datetime(2026, 11, 6, 0, 0))
+    │    │        └ <Thread(Thread-1 (_monitoring_worker), started daemon 3896)>
+    │    └ <bound method ANEELMonitorApp._monitoring_worker of <__main__.ANEELMonitorApp object at 0x0000014687F81BE0>>
+    └ <Thread(Thread-1 (_monitoring_worker), started daemon 3896)>
+
+> File "c:\aneel_monitor\main.py", line 162, in _monitoring_worker
+    self.browser.fill_date_fields(
+    │    │       └ <function ANEELBrowser.fill_date_fields at 0x0000014685B45D20>
+    │    └ <app.browser.browser.ANEELBrowser object at 0x0000014688248EC0>
+    └ <__main__.ANEELMonitorApp object at 0x0000014687F81BE0>
+
+  File "c:\aneel_monitor\app\browser\browser.py", line 63, in fill_date_fields
+    self.page.fill("#txtDataInicial", data_inicial)
+    │    │    │                       └ '06/11/2026'
+    │    │    └ <function Page.fill at 0x0000014685B01FE0>
+    │    └ <Page url='https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquisar&acao...
+    └ <app.browser.browser.ANEELBrowser object at 0x0000014688248EC0>
+
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\sync_api\_generated.py", line 11332, in fill
+    self._sync(
+    │    └ <function SyncBase._sync at 0x0000014685AB9F30>
+    └ <Page url='https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquisar&acao...
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+           │    └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished name='Task-8' coro=<Page.fill() done, defined at C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\...
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_page.py", line 930, in fill
+    return await self._main_frame.fill(**locals_to_params(locals()))
+                 │    │           │      └ <function locals_to_params at 0x00000146850E56F0>
+                 │    │           └ <function Frame.fill at 0x0000014685A2DB10>
+                 │    └ <Frame name= url='https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquis...
+                 └ <Page url='https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquisar&acao...
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_frame.py", line 637, in fill
+    await self._fill(**locals_to_params(locals()))
+          │    │       └ <function locals_to_params at 0x00000146850E56F0>
+          │    └ <function Frame._fill at 0x0000014685A2DC70>
+          └ <Frame name= url='https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquis...
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_frame.py", line 649, in _fill
+    await self._channel.send("fill", self._timeout, locals_to_params(locals()))
+          │    │        │            │    │         └ <function locals_to_params at 0x00000146850E56F0>
+          │    │        │            │    └ <function Frame._timeout at 0x0000014685A13110>
+          │    │        │            └ <Frame name= url='https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquis...
+          │    │        └ <function Channel.send at 0x00000146850F1010>
+          │    └ <playwright._impl._connection.Channel object at 0x0000014688274390>
+          └ <Frame name= url='https://sei.aneel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquis...
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+                 │    │           └ <function Connection.wrap_api_call at 0x00000146850F3AB0>
+                 │    └ <playwright._impl._connection.Connection object at 0x0000014688249A90>
+                 └ <playwright._impl._connection.Channel object at 0x0000014688274390>
+  File "C:\Users\4013096\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+          │                       └ {'frames': [{'file': 'c:\\aneel_monitor\\app\\browser\\browser.py', 'line': 63, 'column': 0, 'function': 'ANEELBrowser.fill_d...
+          └ <function rewrite_error at 0x0000014684B8D430>
+
+playwright._impl._errors.TimeoutError: Page.fill: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#txtDataInicial")
+
